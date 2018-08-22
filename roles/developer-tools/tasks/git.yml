@@ -1,0 +1,9 @@
+---
+- name: Install Git
+  become: true
+  apt: name=git state=present
+
+- name: Configure Git
+  template:
+    src: gitconfig.j2 
+    dest: /home/evan/.gitconfig 

@@ -1,0 +1,6 @@
+---
+- name: Configure Editor
+  include_tasks: editor.yml
+
+- name: Configure Git
+  include_tasks: git.yml
