@@ -1,6 +1,9 @@
 ---
-- name: Configure Editor
+- name: Install and Configure Shell
+  include_tasks: shell.yml
+
+- name: Install and Configure Editor
   include_tasks: editor.yml
 
-- name: Configure Git
+- name: Install and Configure Git
   include_tasks: git.yml

@@ -1,7 +1,7 @@
 ---
 - name: Install Git
   become: true
-  apt: name=git state=present
+  apt: name=git
 
 - name: Configure Git
   template:
