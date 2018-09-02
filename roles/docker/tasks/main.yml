@@ -1,0 +1,26 @@
+---
+- name: Install Docker Dependencies
+  become: true
+  apt: name={{ packages }}
+  vars:
+    packages:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - gnupg2
+      - software-properties-common
+
+- name: Add Docker official GPG key
+  become: true
+  apt_key:
+    url: https://download.docker.com/linux/debian/gpg 
+    id: 0EBFCD88
+
+- name: Add Docker apt repository
+  become: true
+  apt_repository:
+    repo: deb [arch=amd64] https://download.docker.com/linux/debian stretch stable
+
+- name: Install Docker
+  become: true
+  apt: name=docker-ce update_cache=true 
