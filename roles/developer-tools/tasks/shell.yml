@@ -1,0 +1,21 @@
+---
+- name: Install Zsh
+  become: true
+  apt: name=zsh
+
+- name: Configure PAM for chsh
+  become: true
+  replace:
+    path: /etc/pam.d/chsh
+    regexp: '^auth\s+required\s+pam_shells.so$'
+    replace: 'auth sufficient pam_shells.so'
+
+- name: Set ZSH as default shell
+  command: chsh -s /usr/bin/zsh 
+
+- name: Create .zshrc
+  file:
+    state: touch
+    path: /home/evan/.zshrc
+    owner: evan
+    mode: 0644
