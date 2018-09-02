@@ -7,3 +7,6 @@
 
 - name: Install and Configure Git
   include_tasks: git.yml
+
+- name: Install and Configure JVM Languages
+  include_tasks: sdkman.yml

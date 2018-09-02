@@ -1,0 +1,37 @@
+- name: Install sdkman dependencies
+  become: true
+  apt: name={{ packages }}
+  vars:
+    packages:
+      - unzip
+      - zip
+
+- name: Check whether sdkman is installed
+  stat: path=/home/evan/.sdkman/bin/sdkman-init.sh 
+  register: sdkman_init
+
+- name: Download sdkman Installation Script
+  get_url:
+    dest: /tmp/install_sdkman.sh 
+    url: https://get.sdkman.io
+    mode: u+rwx
+  when: sdkman_init.stat.exists == false
+
+- name: Install sdkman
+  shell: /tmp/install_sdkman.sh
+  when: sdkman_init.stat.exists == false
+
+- name: Remove sdkman Installation Script
+  file:
+    path: /tmp/install_sdkman.sh 
+    state: absent
+
+- name: Install Java
+  shell: source /home/evan/.sdkman/bin/sdkman-init.sh && sdk install java {{ my_java_version }}
+  args:
+    executable: /usr/bin/zsh
+
+- name: Install Kotlin
+  shell: source /home/evan/.sdkman/bin/sdkman-init.sh && sdk install kotlin {{ my_kotlin_version }} 
+  args:
+    executable: /usr/bin/zsh
