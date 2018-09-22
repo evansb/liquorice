@@ -1,0 +1,21 @@
+- name: Install KVM2 Driver Prerequisites
+  become: true
+  apt: name={{ packages }}
+  vars:
+    packages:
+    - libvirt-clients
+    - libvirt-daemon-system
+    - qemu-kvm
+
+- name: Add User to libvirt group
+  become: true
+  user:
+    name: evan
+    groups: libvirt
+
+- name: Download Docker Machine KVM2 Driver
+  become: true
+  get_url:
+    url: https://storage.googleapis.com/minikube/releases/latest/docker-machine-driver-kvm2
+    dest: /usr/local/bin/docker-machine-driver-kvm2
+    mode: 755

@@ -1,0 +1,19 @@
+- name: Add Google Cloud apt key
+  become: true
+  apt_key: url=https://packages.cloud.google.com/apt/doc/apt-key.gpg
+
+- name: Add Kubernetes apt repository
+  become: true
+  apt_repository:
+    repo: deb [arch=amd64] http://apt.kubernetes.io/ kubernetes-stretch main
+
+- name: Install Kubectl
+  become: true
+  apt: name=kubectl
+
+- name: Install minikube
+  become: true
+  get_url:
+    url: https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+    dest: /usr/local/bin/minikube
+    mode: 755

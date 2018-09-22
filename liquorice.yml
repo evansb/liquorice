@@ -3,4 +3,4 @@
   remote_user: evan
   roles:
     - developer-tools
-    - docker
+    - kubernetes

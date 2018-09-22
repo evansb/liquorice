@@ -1,0 +1,6 @@
+---
+- name: Install KVM2 Driver
+  include_tasks: kvm2.yml
+
+- name: Install Minikube
+  include_tasks: minikube.yml
