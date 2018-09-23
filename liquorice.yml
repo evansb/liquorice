@@ -2,5 +2,6 @@
 - hosts: all
   remote_user: evan
   roles:
+    - monitoring
     - developer-tools
     - kubernetes
