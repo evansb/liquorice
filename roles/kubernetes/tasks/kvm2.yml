@@ -11,6 +11,7 @@
   become: true
   user:
     name: evan
+    append: true
     groups: libvirt
 
 - name: Download Docker Machine KVM2 Driver

@@ -33,4 +33,5 @@
   become: true
   user:
     name: evan
+    append: true
     groups: docker
